@@ -39,8 +39,12 @@ services:
 
   php:
     build:
-      context: Dockerfiles
+      context: Dockerfiles/php
       dockerfile: Dockerfile
+      args:
+        USER_ID: $USER_ID
+        GROUP_ID: $GROUP_ID
+    image: php_proxied
     container_name: php
     volumes:
       - ./src:/var/www/html
@@ -52,6 +56,13 @@ services:
       - laravel
 
   composer:
+    # build: 
+    #   context: Dockerfiles/composer
+    #   dockerfile: Dockerfile
+    #   args:
+    #     USER_ID: $USER_ID
+    #     GROUP_ID: $GROUP_ID
+    # image: composer_proxied
     image: composer:latest
     container_name: composer
     volumes: 
@@ -61,7 +72,13 @@ services:
       - laravel
 
   npm:
-    image: node:13.7
+    build: 
+      context: Dockerfiles/node
+      dockerfile: Dockerfile
+      args:
+        USER_ID: $USER_ID
+        GROUP_ID: $GROUP_ID
+    image: node_proxied
     container_name: npm
     volumes: 
       - ./src:/var/www/html
@@ -70,8 +87,12 @@ services:
 
   artisan:
     build: 
-      context: Dockerfiles
+      context: Dockerfiles/php
       dockerfile: Dockerfile
+      args:
+        USER_ID: $USER_ID
+        GROUP_ID: $GROUP_ID
+    image: php_proxied
     container_name: artisan
     volumes:
       - ./src:/var/www/html

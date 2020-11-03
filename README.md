@@ -1,5 +1,5 @@
-# docker-composer-laravel
-My Laravel Bootstrap
+# World Builder
+My WorldBuilder
 
 ## Recommended Workflow
 
@@ -23,10 +23,4 @@ instead of
 docker-compose run --rm artisan migrate
 docker-compose run --rm composer install
 docker-compose run --rm npm install
-```
-
-## Make new project
-
-```shell
-dcr composer create-project laravel/laravel .
 ```
